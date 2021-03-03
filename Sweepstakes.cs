@@ -11,6 +11,8 @@ namespace SweepStakes
         private Dictionary<int, Contestant> contestants;
         private string name;
         public Contestant winner;
+ 
+    
 
         public string Name
         {
@@ -28,9 +30,9 @@ namespace SweepStakes
 
         public void RegisterContestant(Contestant contestant)
         {
-            contestant.FirstName = UserInterface.GetUserInputFor("Please enter your first name");
-            contestant.LastName = UserInterface.GetUserInputFor("Please enter your last name");
-            contestant.EmailAddress = UserInterface.GetUserInputFor("Please enter your email address");
+            contestant.FirstName = UserInterface.GetUserInputFor("Please enter your First name");
+            contestant.LastName = UserInterface.GetUserInputFor("Please enter your Last name");
+            contestant.EmailAddress = UserInterface.GetUserInputFor("Please enter your Email");
             ContestantRegistrationNumber();
         }
 
@@ -44,10 +46,21 @@ namespace SweepStakes
             return count;
         }
 
-        //public Contestant PickWinner()
-        //{
-        //    winner = new Contestant();
-            
-        //}
+        public Contestant PickWinner()
+        {
+            Random random = new Random();
+            winner = new Contestant();          
+            random.Next(contestants.Count);
+            return winner;
+        }
+
+        public void PrintContestantInfo()
+        { 
+            foreach (Contestant contestant in contestants)
+            {
+                Console.WriteLine(contestant.FirstName + "" + contestant.LastName + "" + contestant.RegistrationNumber);
+
+            }
+        }
     }
 }
