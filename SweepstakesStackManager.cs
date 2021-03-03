@@ -9,15 +9,19 @@ namespace SweepStakes
     class SweepstakesStackManager : ISweepstakesManager
     {
         //uses Stack data as an underlying structure
-
-        void ISweepstakesManager.InsertSweepstakes(Sweepstakes sweepstakes)
+        private Stack<Sweepstakes> stack;
+        public SweepstakesStackManager()
         {
-            throw new NotImplementedException();
+            stack = new Stack<Sweepstakes>();
+        }
+        public void InsertSweepstakes(Sweepstakes sweepstakes)
+        {
+            stack.Push(sweepstakes);
         }
 
-        Sweepstakes ISweepstakesManager.GetSweepstakes()
+        public Sweepstakes GetSweepstakes()
         {
-            throw new NotImplementedException();
+            return stack.Pop();
         }
     }
 }

@@ -6,17 +6,11 @@ using System.Threading.Tasks;
 
 namespace SweepStakes
 {
-    class MarketingFirm
+    class Simulation
     {
-        ISweepstakesManager _manager;
     }
 
-   void MarketingFirm(ISweepstakesManager manager)
-    {
-
-    }
-
-    void CreateSweepStake()
+    public void CreateMarketingFirmWithManager()
     {
 
     }
