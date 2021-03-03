@@ -10,14 +10,14 @@ namespace SweepStakes
     {
         //uses Queue data structure as an underlying structure
         private Queue<Sweepstakes> queue;
-        void ISweepstakesManager.InsertSweepstakes(Sweepstakes sweepstakes)
+        public void InsertSweepstakes(Sweepstakes sweepstakes)
         {
-            throw new NotImplementedException();
+            queue.Enqueue(sweepstakes);
         }
 
-        Sweepstakes ISweepstakesManager.GetSweepstakes()
+        public Sweepstakes GetSweepstakes()
         {
-            throw new NotImplementedException();
+            return queue.Dequeue();
         }
     }
 }
