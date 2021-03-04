@@ -8,16 +8,39 @@ namespace SweepStakes
 {
     class MarketingFirm
     {
-        ISweepstakesManager _manager;
-    }
+        private ISweepstakesManager _manager;
+        public MarketingFirm()
+        {
 
-   void MarketingFirm(ISweepstakesManager manager)
-    {
+        }
+    
+        public void DoMarketingFirm(ISweepstakesManager manager)
+        {
+            UserInterface.GetUserInputFor("SweepstakesStackManager or SweepstakesQueueManager?");
+            ISweepstakesManager sw= null;
+            switch (manager)
+            {
+                case SweepstakesStackManager():
+                    _manager = new SweepstakesStackManager();
+                    break;
+                case "2":
+                    _manager = new SweepstakesQueueManager();
+                    break;
+                default:
+                    Console.WriteLine("Not valid");
+                    DoMarketingFirm(manager);
+                    break;
+            }
+            return sw;
 
-    }
+        }
 
-    void CreateSweepStake()
-    {
+
+        public void CreateSweepStake()
+        {
+            DoMarketingFirm(_manager);
+            
+        }
 
     }
 }
