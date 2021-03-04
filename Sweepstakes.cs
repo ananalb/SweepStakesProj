@@ -52,7 +52,7 @@ namespace SweepStakes
         {
             Random random = new Random();
             winner = new Contestant();          
-            random.Next(5);
+            random.Next(15);
             return winner;
         }
 
