@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SweepStakes
 {
-    class Sweepstakes
+    class Sweepstakes 
     {
         private Dictionary<int, Contestant> contestants;
         private string name;
@@ -33,12 +35,12 @@ namespace SweepStakes
             contestant.FirstName = UserInterface.GetUserInputFor("Please enter your First name");
             contestant.LastName = UserInterface.GetUserInputFor("Please enter your Last name");
             contestant.EmailAddress = UserInterface.GetUserInputFor("Please enter your Email");
-            ContestantRegistrationNumber();
+            contestant.RegistrationNumber = ContestantRegistrationNumber();
         }
 
-        public double ContestantRegistrationNumber()
+        public int ContestantRegistrationNumber()
         {
-            double count = 0;
+            int count = 0;
             for(int i = 0; i < contestants.Count; i++)
             {
                 count++;
@@ -50,17 +52,16 @@ namespace SweepStakes
         {
             Random random = new Random();
             winner = new Contestant();          
-            random.Next(contestants.Count);
+            random.Next(50);
             return winner;
         }
 
-        public void PrintContestantInfo()
-        { 
-            foreach (Contestant contestant in contestants)
+        public void PrintContestantInfo(Contestant contestant)
+        {
+           for(int i = 0; i < contestants.Count; i++)
             {
-                Console.WriteLine(contestant.FirstName + "" + contestant.LastName + "" + contestant.RegistrationNumber);
-
-            }
+                Console.WriteLine(contestant.FirstName + "" + contestant.LastName + "" + contestant.EmailAddress + contestant.RegistrationNumber);
+            }                   
         }
     }
 }
