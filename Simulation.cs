@@ -16,8 +16,6 @@ namespace SweepStakes
         {
            
         }
-
-
         public ISweepstakesManager CreateMarketingFirmWithManager(string choice)
         {      
 

@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 
 namespace SweepStakes
 {
-    class Sweepstakes 
+    class Sweepstakes : IContestant
     {
         private Dictionary<int, Contestant> contestants;
         private string name;
         public Contestant winner;
- 
-    
 
         public string Name
         {
@@ -22,7 +20,7 @@ namespace SweepStakes
             {
                 return name;
             }
-        }
+        }        
 
         public Sweepstakes(string name)
         {
@@ -46,14 +44,20 @@ namespace SweepStakes
                 count++;
             }
             return count;
-        }
+        }      
 
         public Contestant PickWinner()
         {
             Random random = new Random();
             winner = new Contestant();          
-            random.Next(contestants.Count);
+            random.Next(15);
             return winner;
+        }
+
+        public void Notify(Contestant contestant)
+        {
+            PickWinner();
+            Console.Write($"Congratulations.You won! {contestant.FirstName} + {contestant.LastName}");
         }
 
         public void PrintContestantInfo(Contestant contestant)
@@ -62,6 +66,13 @@ namespace SweepStakes
             {
                 Console.WriteLine(contestant.FirstName + "" + contestant.LastName + "" + contestant.EmailAddress + contestant.RegistrationNumber);
             }                   
+        }
+        public void Notify(IContestant winner)
+        {
+            foreach (IContestant contestant in contestants)
+                
+                contestant.Notify(winner);
+            }
         }
     }
 }
