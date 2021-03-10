@@ -10,14 +10,14 @@ namespace SweepStakes
     class Simulation
     {
         private ISweepstakesManager _manager;
-        
+
 
         public Simulation()
         {
-           
+
         }
         public ISweepstakesManager CreateMarketingFirmWithManager(string choice)
-        {      
+        {
 
             switch (choice)
             {
@@ -36,6 +36,14 @@ namespace SweepStakes
 
             }
             return _manager;
+        }
+
+        public void CreateMarketingFirm()
+
+        {
+            ISweepstakesManager chosenManager = CreateMarketingFirmWithManager("1");
+            MarketingFirm marketingFirm = new MarketingFirm(chosenManager);
+
         }
     }
 }

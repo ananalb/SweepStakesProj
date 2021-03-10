@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SweepStakes
 {
-    class Sweepstakes : IContestant
+    class Sweepstakes 
     {
         private Dictionary<int, Contestant> contestants;
         private string name;
@@ -33,31 +33,17 @@ namespace SweepStakes
             contestant.FirstName = UserInterface.GetUserInputFor("Please enter your First name");
             contestant.LastName = UserInterface.GetUserInputFor("Please enter your Last name");
             contestant.EmailAddress = UserInterface.GetUserInputFor("Please enter your Email");
-            contestant.RegistrationNumber = ContestantRegistrationNumber();
+            contestant.RegistrationNumber = contestants.Count;
+            contestants.Add(contestant.RegistrationNumber, contestant);
         }
-
-        public int ContestantRegistrationNumber()
-        {
-            int count = 0;
-            for(int i = 0; i < contestants.Count; i++)
-            {
-                count++;
-            }
-            return count;
-        }      
+     
 
         public Contestant PickWinner()
         {
-            Random random = new Random();
-            winner = new Contestant();          
-            random.Next(15);
+            Random random = new Random();          
+            int randnumber = random.Next(contestants.Count);
+            winner = contestants[randnumber];
             return winner;
-        }
-
-        public void Notify(Contestant contestant)
-        {
-            PickWinner();
-            Console.Write($"Congratulations.You won! {contestant.FirstName} + {contestant.LastName}");
         }
 
         public void PrintContestantInfo(Contestant contestant)
@@ -67,12 +53,6 @@ namespace SweepStakes
                 Console.WriteLine(contestant.FirstName + "" + contestant.LastName + "" + contestant.EmailAddress + contestant.RegistrationNumber);
             }                   
         }
-        public void Notify(IContestant winner)
-        {
-            foreach (IContestant contestant in contestants)
-                
-                contestant.Notify(winner);
-            }
-        }
+        
     }
 }

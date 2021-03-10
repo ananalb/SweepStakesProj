@@ -18,6 +18,12 @@ namespace SweepStakes
             _manager = choice;
 
         }      
+
+        public void CreateSweepstakes()
+        {
+            Sweepstakes sweepStakes = new Sweepstakes("New");
+            _manager.InsertSweepstakes(sweepStakes);
+        }
         
     }
 }

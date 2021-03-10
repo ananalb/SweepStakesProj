@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace SweepStakes
 {
-    public interface IContestant
+    interface IContestant
     {
-        void Notify(IContestant contestant);
     }
-
 }
