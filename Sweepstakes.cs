@@ -43,6 +43,10 @@ namespace SweepStakes
             Random random = new Random();          
             int randnumber = random.Next(contestants.Count);
             winner = contestants[randnumber];
+            foreach(KeyValuePair<int, Contestant> contestant in contestants)
+            {
+                contestant.Value.Notify(winner);
+            }
             return winner;
         }
 

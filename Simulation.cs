@@ -9,29 +9,29 @@ namespace SweepStakes
 {
     class Simulation
     {
-        private ISweepstakesManager _manager;
+        
 
 
         public Simulation()
         {
 
         }
-        public ISweepstakesManager CreateMarketingFirmWithManager(string choice)
+        public static ISweepstakesManager ManagerFactory(string choice)
         {
-
+            ISweepstakesManager _manager = null;
             switch (choice)
             {
-                case "1":
+                case "stack":
                     _manager = new SweepstakesStackManager();
                     break;
 
-                case "2":
+                case "queue":
                     _manager = new SweepstakesQueueManager();
                     break;
 
                 default:
                     Console.WriteLine("Please choose a valid Option");
-                    CreateMarketingFirmWithManager(choice);
+                    ManagerFactory(choice);
                     break;
 
             }
@@ -41,8 +41,12 @@ namespace SweepStakes
         public void CreateMarketingFirm()
 
         {
-            ISweepstakesManager chosenManager = CreateMarketingFirmWithManager("1");
+            
+            Console.WriteLine("Do you want a stack or queue?");
+            string userInput = Console.ReadLine();
+            ISweepstakesManager chosenManager = ManagerFactory(userInput);
             MarketingFirm marketingFirm = new MarketingFirm(chosenManager);
+            marketingFirm.CreateSweepstakes();
 
         }
     }
